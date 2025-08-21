@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online MANIPAL - MBA Portal</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Campus Picture Section */
+        .campus-section {
+            padding: 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .campus-image {
+            width: 100%;
+            height: 400px;
+            background-image: url('campus.jpg.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            transition: background-image 0.5s ease-in-out;
+        }
+        
+        .slider-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            padding: 12px 10px;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            z-index: 5;
+        }
+        
+        .slider-arrow:hover {
+            background: rgba(0,0,0,0.8);
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .slider-arrow.left {
+            left: 15px;
+        }
+        
+        .slider-arrow.right {
+            right: 15px;
+        }
+        
+        .slider-dots {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 5;
+        }
+        
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .dot.active {
+            background: white;
+            transform: scale(1.2);
+        }
+        
+        .welcome-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+            z-index: 2;
+        }
+        
+        .welcome-text h2 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .welcome-text p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        /* Semester Dropdowns */
+        .semester-section {
+            padding: 30px 50px;
+            background-color: white;
+        }
+        
+        .semester-section h2 {
+            font-size: 3.5em;
+            margin-bottom: 30px;
+            font-family: 'Georgia', serif;
+            color: #333;
+            text-align: center;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .semester-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 25px;
+            margin-top: 30px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .semester-dropdown {
+            border: none;
+            border-radius: 0;
+            overflow: hidden;
+            background-color: white;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .semester-dropdown:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+        }
+        
+        .dropdown-header {
+            background-color: white;
+            padding: 25px 20px;
+            cursor: pointer;
+            font-weight: bold;
+            border: none;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .semester-number {
+            font-size: 4em;
+            font-weight: bold;
+            color: #ff8c00;
+            display: block;
+            margin-bottom: 10px;
+            font-family: 'Arial Black', sans-serif;
+        }
+        
+        .semester-text {
+            font-size: 1.2em;
+            color: #333;
+            font-family: 'Georgia', serif;
+            font-weight: normal;
+        }
+        
+        .dropdown-content {
+            padding: 20px;
+            display: none;
+            background-color: #f8f9fa;
+            border-top: 2px solid #ff8c00;
+        }
+        
+        .dropdown-content.active {
+            display: block;
+        }
+        
+        .semester-status {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            text-align: center;
+        }
+        
+        .status-text {
+            font-weight: bold;
+            font-size: 16px;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        .status-completed {
+            color: #28a745;
+        }
+        
+        .status-ongoing {
+            color: #ffc107;
+        }
+        
+        .status-locked {
+            color: #dc3545;
+        }
+        
+        .action-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            font-family: 'Arial', sans-serif;
+            transition: all 0.3s ease;
+        }
+        
+        .view-results-btn {
+            background-color: #28a745;
+            color: white;
+        }
+        
+        .view-results-btn:hover {
+            background-color: #218838;
+            transform: scale(1.05);
+        }
+        
+        .continue-osl-btn {
+            background-color: #ffc107;
+            color: #333;
+        }
+        
+        .continue-osl-btn:hover {
+            background-color: #e0a800;
+            transform: scale(1.05);
+        }
+        
+        .course-duration {
+            font-size: 14px;
+            color: #666;
+            margin-top: 10px;
+            font-family: 'Georgia', serif;
+        }
+        
+        /* Responsive Design for Page-Specific Content */
+        @media (max-width: 768px) {
+            .campus-image {
+                height: 300px;
+            }
+            
+            .welcome-text h2 {
+                font-size: 1.8em;
+            }
+            
+            .welcome-text p {
+                font-size: 1em;
+            }
+            
+            .slider-arrow {
+                padding: 10px 8px;
+                font-size: 16px;
+            }
+            
+            .slider-arrow.left {
+                left: 10px;
+            }
+            
+            .slider-arrow.right {
+                right: 10px;
+            }
+            
+            .semester-section {
+                padding: 20px 25px;
+            }
+            
+            .semester-section h2 {
+                font-size: 2.5em;
+            }
+            
+            .semester-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(3, 1fr);
+                gap: 20px;
+            }
+            
+            .semester-number {
+                font-size: 3em;
+            }
+            
+            .semester-text {
+                font-size: 1em;
+            }
+            
+            .dropdown-header {
+                padding: 20px 15px;
+            }
+            
+            .dropdown-content {
+                padding: 15px;
+            }
+            
+            .semester-status {
+                gap: 12px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .campus-image {
+                height: 250px;
+            }
+            
+            .welcome-text h2 {
+                font-size: 1.5em;
+            }
+            
+            .welcome-text p {
+                font-size: 0.9em;
+            }
+            
+            .slider-arrow {
+                padding: 8px 6px;
+                font-size: 14px;
+            }
+            
+            .dot {
+                width: 8px;
+                height: 8px;
+            }
+            
+            .semester-section {
+                padding: 15px 20px;
+            }
+            
+            .semester-section h2 {
+                font-size: 2em;
+            }
+            
+            .semester-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: repeat(6, 1fr);
+                gap: 15px;
+            }
+            
+            .semester-number {
+                font-size: 2.5em;
+            }
+            
+            .semester-text {
+                font-size: 0.9em;
+            }
+            
+            .dropdown-header {
+                padding: 15px 10px;
+            }
+            
+            .dropdown-content {
+                padding: 12px;
+            }
+            
+            .status-text {
+                font-size: 14px;
+            }
+            
+            .action-btn {
+                padding: 8px 15px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Include Header -->
+    <div id="header-placeholder"></div>
+
+    <!-- Campus Picture Section -->
+    <div class="campus-section">
+        <div class="campus-image" id="campusSlider">
+            <div class="welcome-text">
+                <h2>Welcome to Manipal University</h2>
+                <p>Your journey to academic excellence begins here.</p>
+            </div>
+            <button class="slider-arrow left" onclick="changeSlide(-1)">❮</button>
+            <button class="slider-arrow right" onclick="changeSlide(1)">❯</button>
+            <div class="slider-dots" id="sliderDots">
+                <span class="dot active" onclick="goToSlide(0)"></span>
+                <span class="dot" onclick="goToSlide(1)"></span>
+                <span class="dot" onclick="goToSlide(2)"></span>
+                <span class="dot" onclick="goToSlide(3)"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Semester Dropdowns -->
+    <div class="semester-section">
+        <h2>Semester Progress</h2>
+        <div class="semester-grid">
+            <!-- 1st Semester -->
+            <div class="semester-dropdown">
+                <div class="dropdown-header" onclick="toggleDropdown(1)">
+                    <span class="semester-number">1</span>
+                    <span class="semester-text">1st Semester</span>
+                </div>
+                <div class="dropdown-content" id="dropdown1">
+                    <div class="semester-status">
+                        <span class="status-text status-completed">✅ 1st Sem Completed</span>
+                        <button class="action-btn view-results-btn" onclick="window.location.href='results.html'">View Results</button>
+                    </div>
+                    <div class="course-duration">Course Duration: 6 months</div>
+                </div>
+            </div>
+
+            <!-- 2nd Semester -->
+            <div class="semester-dropdown">
+                <div class="dropdown-header" onclick="toggleDropdown(2)">
+                    <span class="semester-number">2</span>
+                    <span class="semester-text">2nd Semester</span>
+                </div>
+                <div class="dropdown-content" id="dropdown2">
+                    <div class="semester-status">
+                        <span class="status-text status-ongoing">🟡 On Going Sem</span>
+                        <button class="action-btn continue-osl-btn">Continue OSL</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3rd Semester -->
+            <div class="semester-dropdown">
+                <div class="dropdown-header" onclick="toggleDropdown(3)">
+                    <span class="semester-number">3</span>
+                    <span class="semester-text">3rd Semester</span>
+                </div>
+                <div class="dropdown-content" id="dropdown3">
+                    <div class="semester-status">
+                        <span class="status-text status-locked">🔒 2nd sem courses to be completed first to view the upcoming sem courses</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4th Semester -->
+            <div class="semester-dropdown">
+                <div class="dropdown-header" onclick="toggleDropdown(4)">
+                    <span class="semester-number">4</span>
+                    <span class="semester-text">4th Semester</span>
+                </div>
+                <div class="dropdown-content" id="dropdown4">
+                    <div class="semester-status">
+                        <span class="status-text status-locked">🔒 2nd sem courses to be completed first to view the upcoming sem courses</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5th Semester -->
+            <div class="semester-dropdown">
+                <div class="dropdown-header" onclick="toggleDropdown(5)">
+                    <span class="semester-number">5</span>
+                    <span class="semester-text">5th Semester</span>
+                </div>
+                <div class="dropdown-content" id="dropdown5">
+                    <div class="semester-status">
+                        <span class="status-text status-locked">🔒 2nd sem courses to be completed first to view the upcoming sem courses</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6th Semester -->
+            <div class="semester-dropdown">
+                <div class="dropdown-header" onclick="toggleDropdown(6)">
+                    <span class="semester-number">6</span>
+                    <span class="semester-text">6th Semester</span>
+                </div>
+                <div class="dropdown-content" id="dropdown6">
+                    <div class="semester-status">
+                        <span class="status-text status-locked">🔒 2nd sem courses to be completed first to view the upcoming sem courses</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include Footer -->
+    <div id="footer-placeholder"></div>
+
+    <script>
+        // Load header and footer
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+            });
+        
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            });
+        
+        // Image slider functionality
+        let currentSlide = 0;
+        const images = [
+            'campus.jpg.jpeg',
+            'campustwo.webp',
+            'manipalthree.webp',
+            'manipal4.jpg'
+        ];
+        
+        function changeSlide(direction) {
+            currentSlide += direction;
+            if (currentSlide >= images.length) currentSlide = 0;
+            if (currentSlide < 0) currentSlide = images.length - 1;
+            updateSlider();
+        }
+        
+        function goToSlide(slideIndex) {
+            currentSlide = slideIndex;
+            updateSlider();
+        }
+        
+        function updateSlider() {
+            const slider = document.getElementById('campusSlider');
+            const dots = document.querySelectorAll('.dot');
+            
+            // Update background image
+            slider.style.backgroundImage = `url('${images[currentSlide]}')`;
+            
+            // Update dots
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+        
+        // Auto-slide every 3 seconds
+        setInterval(() => {
+            changeSlide(1);
+        }, 3000);
+        
+        // Semester dropdown functionality
+        function toggleDropdown(semesterNumber) {
+            const dropdown = document.getElementById(`dropdown${semesterNumber}`);
+            const allDropdowns = document.querySelectorAll('.dropdown-content');
+            
+            // Close all other dropdowns
+            allDropdowns.forEach(d => {
+                if (d.id !== `dropdown${semesterNumber}`) {
+                    d.classList.remove('active');
+                }
+            });
+            
+            // Toggle current dropdown
+            dropdown.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Login - Online MANIPAL</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .login-section {
+            padding: 30px 20px;
+            background-color: white;
+            min-height: 70vh;
+        }
+        
+        .login-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+        
+        .main-content {
+            background-color: #fff;
+            padding: 40px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border-radius: 15px;
+            border: 1px solid #eee;
+        }
+        
+        .sidebar {
+            background-color: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #eee;
+            height: fit-content;
+        }
+        
+        .university-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .university-header h1 {
+            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-family: 'Georgia', serif;
+            font-weight: bold;
+        }
+        
+        .university-header h2 {
+            color: #ff8c00;
+            font-size: 2em;
+            margin-bottom: 20px;
+            font-family: 'Georgia', serif;
+        }
+        
+        .form-section {
+            margin-bottom: 30px;
+        }
+        
+        .form-section h3 {
+            color: #333;
+            font-size: 1.3em;
+            margin-bottom: 20px;
+            font-family: 'Georgia', serif;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: bold;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+            box-sizing: border-box;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #ff8c00;
+        }
+        
+        .login-btn {
+            width: 100%;
+            padding: 15px 20px;
+            background-color: #ff8c00;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .login-btn:hover {
+            background-color: #e67e00;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 140, 0, 0.3);
+        }
+        
+        .forgot-password {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .forgot-password a {
+            color: #ff8c00;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+        
+        .sidebar h3 {
+            color: #333;
+            margin-bottom: 20px;
+            font-family: 'Georgia', serif;
+            font-size: 1.3em;
+        }
+        
+        .sidebar-content {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .sidebar-content p {
+            margin-bottom: 15px;
+        }
+        
+        .login-benefits {
+            background-color: #e9ecef;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        
+        .login-benefits h4 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        
+        .login-benefits ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .login-benefits li {
+            padding: 5px 0;
+            color: #555;
+        }
+        
+        .login-benefits li:before {
+            content: "✓ ";
+            color: #28a745;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 768px) {
+            .login-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .university-header h1 {
+                font-size: 2em;
+            }
+            
+            .university-header h2 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Include Header -->
+    <div id="header-placeholder"></div>
+
+    <!-- Login Section -->
+    <div class="login-section">
+        <div class="login-container">
+            <div class="main-content">
+                <div class="university-header">
+                    <h1>Manipal University</h1>
+                    <h2>Student Login Portal</h2>
+                </div>
+                
+                <div class="form-section">
+                    <h3>Enter Your Credentials</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" id="username" placeholder="Enter your username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" placeholder="Enter your password" required>
+                        </div>
+                        <button type="button" class="login-btn" onclick="window.location.href='portal.html'">Login</button>
+                    </form>
+                    <div class="forgot-password">
+                        <a href="#">Forgot Password?</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sidebar">
+                <h3>Student Portal</h3>
+                <div class="sidebar-content">
+                    <p>Welcome to the Manipal University Student Portal. Access your academic information, results, and course materials.</p>
+                    
+                    <div class="login-benefits">
+                        <h4>🔐 Login Benefits:</h4>
+                        <ul>
+                            <li>Access your academic records</li>
+                            <li>View semester results</li>
+                            <li>Download course materials</li>
+                            <li>Track your progress</li>
+                            <li>Contact faculty members</li>
+                        </ul>
+                    </div>
+                    
+                    <p><strong>Need Help?</strong></p>
+                    <p>Contact our IT support team for login assistance or password reset.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include Footer -->
+    <div id="footer-placeholder"></div>
+
+    <script>
+        // Load header and footer
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+            });
+        
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            });
+    </script>
+</body>
+</html>

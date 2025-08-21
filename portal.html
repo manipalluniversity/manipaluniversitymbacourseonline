@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBA Result Portal - Online MANIPAL</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .portal-section {
+            padding: 50px 20px;
+            background-color: white;
+            min-height: 60vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .portal-container {
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+            background-color: #fff;
+            padding: 50px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border-radius: 15px;
+            border: 1px solid #eee;
+        }
+        
+        .portal-container h1 {
+            color: #333;
+            font-size: 3em;
+            margin-bottom: 20px;
+            font-family: 'Georgia', serif;
+            font-weight: bold;
+        }
+        
+        .portal-container h2 {
+            color: #666;
+            font-size: 1.5em;
+            margin-bottom: 40px;
+            font-weight: normal;
+        }
+        
+        .portal-btn {
+            display: inline-block;
+            padding: 20px 40px;
+            background-color: #ff8c00;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 1.3em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 140, 0, 0.3);
+        }
+        
+        .portal-btn:hover {
+            background-color: #e67e00;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 140, 0, 0.4);
+        }
+        
+        .welcome-text {
+            margin-bottom: 30px;
+            color: #555;
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <!-- Include Header -->
+    <div id="header-placeholder"></div>
+
+    <!-- Portal Section -->
+    <div class="portal-section">
+        <div class="portal-container">
+            <h1>MBA Result Portal</h1>
+            <h2>Welcome, Bhuvan Bopanna</h2>
+            <div class="welcome-text">
+                <p>Access your academic results and track your progress through the MBA program.</p>
+                <p>Click below to view your 1st Semester MBA Results.</p>
+            </div>
+            <a href="results.html" class="portal-btn">View 1st Sem MBA Results</a>
+        </div>
+    </div>
+
+    <!-- Include Footer -->
+    <div id="footer-placeholder"></div>
+
+    <script>
+        // Load header and footer
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+            });
+        
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            });
+    </script>
+</body>
+</html>
